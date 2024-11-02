@@ -18,4 +18,21 @@ router.post("/contact", async (req, res) => {
     }
 });
 
+// GET para obtener un contacto por emailAddress
+router.get("/contact/:emailAddress", async (req, res) => {
+    try {
+        const emailAddress = req.params.emailAddress;
+        const contact = await Contact.findOne({ emailAddress: emailAddress });
+
+        if (!contact) {
+            return res.status(404).json({ msg: "No se encontró ningún contacto con ese email." });
+        }
+
+        res.status(200).json(contact);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: "Error al obtener el contacto." });
+    }
+});
+
 module.exports = router;
