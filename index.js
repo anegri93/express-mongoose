@@ -8,11 +8,17 @@ const Contact = require("./routes/Contact");
 const app = express();
 
 // Conexión a MongoDB
-mongoose.connect(process.env.MONGODB_URI).then(() => {
-    console.log("Conectado a MongoDB");
-}).catch((error) => {
-    console.error("Error al conectar a MongoDB:", error);
-});
+const connectToDatabase = async () => {
+    try {
+        await mongoose.connect(process.env.MONGODB_URI);
+        console.log("Conectado a MongoDB");
+    } catch (error) {
+        console.error("Error al conectar a MongoDB:", error);
+        process.exit(1);
+    }
+}
+
+connectToDatabase();
 
 //middleware
 app.use(bodyParser.json());
