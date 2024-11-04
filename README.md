@@ -15,8 +15,8 @@ my-api-project/
 │   └──        # Esquema del modelo Contact
 ├── routes/
 │   └──        # Rutas relacionadas con Contact
-├──              # Servidor principal y configuración de la conexión
-└── .env                 # Archivo para las variables de entorno
+├──            # Servidor principal y configuración de la conexión
+└── .env       # Archivo para las variables de entorno
 ```
 ## Configuración de la Conexión con MongoDB
 Archivo .env: Crea un archivo .env y define la URI de conexión de MongoDB. Esta cadena de conexión te permite especificar el nombre de la base de datos y otras configuraciones.
