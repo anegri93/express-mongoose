@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Contact = require("../models/contact");
 
-router.post("/contact", async (req, res) => {
+router.post("/contact/add", async (req, res) => {
     try {
         const newContact = new Contact(req.body);
         await newContact.save().then((savedContact) => {
@@ -17,6 +17,23 @@ router.post("/contact", async (req, res) => {
         res.status(500).json({msg: "No se pudo crear el contacto. Intente en unos minutos..."});
     }
 });
+
+// GET para obtener todos los contactos
+router.get("/contacts", async (req, res) => {
+    try {
+        const contacts = await Contact.find();
+        
+        if (contacts.length === 0) {
+            return res.status(404).json({ msg: "No hay contactos disponibles." });
+        }
+
+        res.status(200).json(contacts);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: "Error al obtener los contactos." });
+    }
+});
+
 
 // GET para obtener un contacto por emailAddress
 router.get("/contact/:emailAddress", async (req, res) => {
