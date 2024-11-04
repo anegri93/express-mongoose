@@ -1,14 +1,13 @@
 # Creación de la Estructura del Proyecto
 
 ## Inicia un proyecto de Node.js en tu directorio con:
-
 ```bash
 npm init -y
-
+```
 ## Instala las dependencias necesarias:
-
+```
 npm install express mongoose dotenv body-parser
-
+```
 ## Estructura recomendada del proyecto:
 
 my-api-project/
