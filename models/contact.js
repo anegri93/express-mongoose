@@ -18,6 +18,8 @@ const contactScheme = new mongoose.Schema({
     lastName: {
         type: String,
         required: [true,"Este campo es Requerido."],
+        minLength: 3,
+        maxLength: 20,
         validate:{
             validator: (value) => {
                 const nameRegex = /^[A-Za-z]+$/;

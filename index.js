@@ -3,9 +3,17 @@ require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const Contact = require("./routes/Contact");
 
 const app = express();
+
+// Habilitar CORS
+app.use(cors({
+    origin: "http://127.0.0.1:5500", // Cambia esto al origen de tu frontend
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"] // Permitir el encabezado Content-Type
+}));
 
 // Conexión a MongoDB
 const connectToDatabase = async () => {
