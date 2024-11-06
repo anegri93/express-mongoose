@@ -51,10 +51,10 @@ router.get("/contact/email/:emailAddress", async (req, res) => {
 });
 
 
-router.get("/contact/id/:id", async (req, res) => {
+router.get("/contact/search/:id", async (req, res) => {
     try {
         const _id = req.params.id;
-        const contact = await Contact.findOne({ _id: _id });
+        const contact = await Contact.findOne({ _id : _id });
 
         if (!contact) {
             return res.status(404).json({ msg: "No se encontró ningún contacto con ese id." });
