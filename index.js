@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const Contact = require("./routes/Contact");
+const User = require("./routes/User");
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use("/api", Contact);
+app.use("/api", User);
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;

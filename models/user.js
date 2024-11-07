@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userScheme = new mongoose.Shema({
+const userScheme = new mongoose.Schema({
     email:{
         type: String,
         required: [true, "Este campo es Requerido"],
