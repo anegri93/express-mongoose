@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Contact = require("../models/contact");
+const verifyToken = require("../middleware/user")
 
 router.post("/contact/add", async (req, res) => {
     try {
@@ -19,7 +20,7 @@ router.post("/contact/add", async (req, res) => {
 });
 
 // GET para obtener todos los contactos
-router.get("/contacts", async (req, res) => {
+router.get("/contacts", verifyToken, async (req, res) => {
     try {
         const contacts = await Contact.find();
         if (contacts.length === 0) {
@@ -34,7 +35,7 @@ router.get("/contacts", async (req, res) => {
 
 
 // GET para obtener un contacto por emailAddress
-router.get("/contact/email/:emailAddress", async (req, res) => {
+router.get("/contact/email/:emailAddress", verifyToken, async (req, res) => {
     try {
         const emailAddress = req.params.emailAddress;
         const contact = await Contact.findOne({ emailAddress: emailAddress });
@@ -51,7 +52,7 @@ router.get("/contact/email/:emailAddress", async (req, res) => {
 });
 
 
-router.get("/contact/search/:id", async (req, res) => {
+router.get("/contact/search/:id", verifyToken, async (req, res) => {
     try {
         const _id = req.params.id;
         const contact = await Contact.findOne({ _id : _id });
@@ -68,7 +69,7 @@ router.get("/contact/search/:id", async (req, res) => {
 });
 
 //eliminar contacto por id
-router.delete("/contact/delete/:id", async (req, res) => {
+router.delete("/contact/delete/:id", verifyToken, async (req, res) => {
     try {
         const _id = req.params.id;
         const contact = await Contact.findOneAndDelete({ _id: _id });
@@ -80,7 +81,7 @@ router.delete("/contact/delete/:id", async (req, res) => {
 });
 
 //actualizar contacto por id
-router.put("/contact/update/:id", async (req, res) => {
+router.put("/contact/update/:id", verifyToken, async (req, res) => {
     try {
         const _id = req.params.id;
         const contact = await Contact.findOneAndUpdate({ _id: _id }, req.body);
