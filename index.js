@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({
     origin: "http://127.0.0.1:5500", // Cambia esto al origen de tu frontend
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"] // Permitir el encabezado Content-Type
+    allowedHeaders: ["Content-Type", "Authorization"] // Permitir el encabezado Content-Type y Authorization en las peticiones
 }));
 
 // Conexión a MongoDB
