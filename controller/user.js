@@ -41,11 +41,11 @@ const loginUser = async (req, res) => {
         if(validation.length === 0){
             let info = await User.findOne({email: email});
             if (!info || !(await bcryptjs.compare(password, info.password))){
-                return res.status(404).json({msg:"Usuario no encontrado."});
+                return res.status(404).json({success:false, msg:"Usuario no encontrado."});
             };
             const token = jwt.sign({id: info._id}, JWT_SECRET, {expiresIn: JWT_EXPIRES});
             const user = {id: info._id, email: info.email, token: token};
-            return res.status(200).json({msg: "Autenticado Exitosamente", data: user});
+            return res.status(200).json({success:true, msg: "Autenticado Exitosamente", data: user});
         }
 
     } catch (error) {
