@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const clientScheme = new mongoose.Schema({
     ci:{
         type: Number,
+        unique: true,
         require: true,
         //validar Numero
         validate:{
